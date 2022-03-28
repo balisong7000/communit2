@@ -1,18 +1,67 @@
 package community.community.controller;
 
+import community.community.mapper.QuestionMapper;
+import community.community.mapper.UserMapper;
+import community.community.model.Question;
+import community.community.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class PublishController {
+
+    @Autowired
+    private QuestionMapper questionMapper;
+    @Autowired
+    private UserMapper userMapper;
+    private User user;
     @GetMapping("/publish")
     public String publish()
     {
         return "publish";
     }
 
-    public String doPublish()
+    @GetMapping("/dopublish")
+    public String doPublish(
+            @RequestParam("title") String title,
+            @RequestParam("description") String description,
+            @RequestParam("tag") String tag,
+            HttpServletRequest request,
+            Model model
+    )
     {
-        return "publish";
+        Cookie[] cookies = request.getCookies();
+        for(Cookie cookie:cookies)
+        {
+            if(cookie.getName().equals("token"))
+            {
+                String token= cookie.getValue();
+                System.out.println(token+"----token--------------");
+                user = userMapper.findByCookie(token);
+                request.getSession().setAttribute("user", user);
+                break;
+            }
+        }
+        System.out.println(user.toString()+"-----------------");
+        if(user==null)
+        {
+            model.addAttribute("error","user is not exist");
+            return "publish";
+        }
+        Question question = new Question();
+        question.setTitle(title);
+        question.setDescription(description);
+        question.setTag(tag);
+        question.setCreator(user.getId());
+        question.setGmtCreate(System.currentTimeMillis());
+        question.setGmtModified(question.getGmtCreate());
+        questionMapper.create(question);
+        return "redirect:index";
     }
 }
