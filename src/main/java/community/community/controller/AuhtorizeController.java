@@ -52,7 +52,7 @@ public class AuhtorizeController {
         user.setGmtModified(user.getGmtModified());
         userMapper.insertUser(user);
         response.addCookie(new Cookie("token",token));
-        if (gitHubUser != null) {
+        if (gitHubUser != null&&gitHubUser.getId()!=null) {
             System.out.println(gitHubUser.toString()+"-----------------");
             request.getSession().setAttribute("user", gitHubUser);
             return "redirect:index";
