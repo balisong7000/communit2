@@ -42,13 +42,11 @@ public class PublishController {
             if(cookie.getName().equals("token"))
             {
                 String token= cookie.getValue();
-                System.out.println(token+"----token--------------");
                 user = userMapper.findByCookie(token);
                 request.getSession().setAttribute("user", user);
                 break;
             }
         }
-        System.out.println(user.toString()+"-----------------");
         if(user==null)
         {
             model.addAttribute("error","user is not exist");

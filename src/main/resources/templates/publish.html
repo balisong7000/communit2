@@ -32,10 +32,12 @@
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-
+                <li class="dropdown" th:if="${session.user != null}">
+                    <a href="/publish">发布</a>
+                </li>
                 <li class="dropdown" th:if="${session.user != null}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">我 <span class="caret"></span></a>
+                       aria-expanded="false" th:text="${session.user.getName()}"> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">资料中心</a></li>
                         <li><a href="#">个人信息</a></li>
@@ -49,7 +51,6 @@
         </div>
     </div>
 </nav>
-
 <div class="container main">
     <div class="row">
         <div class=" col-lg-9 col-md-12 col-sm-12 col-xs-12">
@@ -70,9 +71,9 @@
                     <label for="title">添加标签</label>
                     <input type="text" name="tag" id="tag" class="form-control" placeholder="input tag:split by ','">
                 </div>
-                <div class="container" >
+                <div class="container">
                     <div class="row">
-                        <div class="alert alert-danger  col-lg-7 col-md-12 col-sm-12 col-xs-12" th:text="${error}"
+                        <div class="alert alert-danger  col-lg-7 col-md-12 col-sm-12 col-xs-12" th:text="${error}" th:if="${error!=null}"
                              role="alert"></div>
                         <button type="submit" class="btn btn-success col-lg-1 col-md-12  col-sm-12 col-xs-12  ">发布
                         </button>
