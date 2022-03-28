@@ -13,7 +13,7 @@ import javax.servlet.http.Cookie;
 @Mapper
 public interface UserMapper {
     @Insert("insert into user  ( name,accountId,token,gmtcreate,gmtmodified) values ( #{name},#{accountId},#{token},#{gmtCreate},#{gmtModified})")
-    void insertUser(User user);
+     void insertUser(User user);
     @Select("select * from user where token=#{token}")
     User findByCookie(@Param("token")  String token);
 }

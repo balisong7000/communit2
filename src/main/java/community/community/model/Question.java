@@ -3,26 +3,25 @@ package community.community.model;
 
 public class Question {
 
-  private long id;
+  private  Integer id;
   private String title;
   private String description;
   private long gmtCreate;
   private long gmtModified;
-  private long creator;
-  private long commentCount;
-  private long viewCount;
-  private long likeCount;
+  private  Integer creator;
+  private Integer commentCount;
+  private  Integer viewCount;
+  private Integer  likeCount;
   private String tag;
 
 
-  public long getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
-
 
   public String getTitle() {
     return title;
@@ -59,42 +58,37 @@ public class Question {
     this.gmtModified = gmtModified;
   }
 
-
-  public long getCreator() {
+  public Integer getCreator() {
     return creator;
   }
 
-  public void setCreator(long creator) {
+  public void setCreator(Integer creator) {
     this.creator = creator;
   }
 
-
-  public long getCommentCount() {
+  public Integer getCommentCount() {
     return commentCount;
   }
 
-  public void setCommentCount(long commentCount) {
+  public void setCommentCount(Integer commentCount) {
     this.commentCount = commentCount;
   }
 
-
-  public long getViewCount() {
+  public Integer getViewCount() {
     return viewCount;
   }
 
-  public void setViewCount(long viewCount) {
+  public void setViewCount(Integer viewCount) {
     this.viewCount = viewCount;
   }
 
-
-  public long getLikeCount() {
+  public Integer getLikeCount() {
     return likeCount;
   }
 
-  public void setLikeCount(long likeCount) {
+  public void setLikeCount(Integer likeCount) {
     this.likeCount = likeCount;
   }
-
 
   public String getTag() {
     return tag;

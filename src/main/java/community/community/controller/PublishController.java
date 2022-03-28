@@ -10,4 +10,9 @@ public class PublishController {
     {
         return "publish";
     }
+
+    public String doPublish()
+    {
+        return "publish";
+    }
 }
